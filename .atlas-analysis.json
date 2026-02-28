@@ -1,0 +1,71 @@
+{
+  "projectType": "sdk-library",
+  "projectName": "CustomButton",
+  "projectDescription": "A beautiful and minimalistic Android button library with outline and drawable support.",
+  "theme": "willow",
+  "primaryColor": "#008af9",
+  "lightColor": null,
+  "darkColor": null,
+  "navigation": {
+    "groups": [
+      {
+        "group": "Get Started",
+        "pages": [
+          "introduction",
+          "installation",
+          "quickstart"
+        ]
+      },
+      {
+        "group": "Guides",
+        "pages": [
+          "guides/button-styles",
+          "guides/customization",
+          "guides/drawables"
+        ]
+      },
+      {
+        "group": "API Reference",
+        "pages": [
+          "api/xml-attributes",
+          "api/methods"
+        ]
+      },
+      {
+        "group": "Resources",
+        "pages": [
+          "resources/examples",
+          "resources/faq"
+        ]
+      }
+    ]
+  },
+  "keyFeatures": [
+    "Customizable outline buttons with stroke width and color control",
+    "Support for left and right drawables with custom sizing",
+    "Pressed state management with color transitions",
+    "Corner radius configuration for rounded buttons",
+    "Extends AppCompatTextView for full TextView functionality",
+    "Support for Android API 15+"
+  ],
+  "publicApiSurface": [
+    "CustomButton(Context)",
+    "CustomButton(Context, AttributeSet)",
+    "CustomButton(Context, AttributeSet, int)",
+    "CustomButton(Context, AttributeSet, int, int)",
+    "setPressStatus(boolean)",
+    "setDrawableLeft(int)",
+    "setDrawableLeft(int, int, int)",
+    "setDrawableRight(int)",
+    "setDrawableRight(int, int, int)",
+    "setColor(int, int, int, int, int, int)",
+    "btn_buttonColor",
+    "btn_buttonSelectColor",
+    "btn_strokeColor",
+    "btn_strokeSelectColor",
+    "btn_textColor",
+    "btn_textSelectColor",
+    "btn_strokeWidth",
+    "btn_cornerRadius"
+  ]
+}
