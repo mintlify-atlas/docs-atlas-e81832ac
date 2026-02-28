@@ -1,0 +1,140 @@
+---
+title: Installation
+description: Add CustomButton to your Android project using Gradle and JitPack
+---
+
+CustomButton is distributed via JitPack, making it easy to add to your Android project.
+
+## Prerequisites
+
+Before installing CustomButton, ensure you have:
+
+- Android Studio installed
+- An Android project with minimum SDK version 15 (Android 4.0.3) or higher
+- Gradle configured in your project
+
+## Add the repository
+
+First, add the JitPack repository to your project's `build.gradle` file:
+
+<Steps>
+  <Step title="Open your project-level build.gradle">
+    Navigate to your project's root directory and open `build.gradle`.
+  </Step>
+
+  <Step title="Add the JitPack repository">
+    Add the JitPack maven repository to your repositories block:
+
+    ```groovy build.gradle
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+    ```
+
+    <Note>
+      If you're using a newer Gradle configuration with `settings.gradle`, add the repository there instead under `dependencyResolutionManagement`.
+    </Note>
+  </Step>
+</Steps>
+
+## Add the dependency
+
+Next, add the CustomButton dependency to your app module's `build.gradle` file:
+
+<Steps>
+  <Step title="Open your app-level build.gradle">
+    Navigate to `app/build.gradle` in your project.
+  </Step>
+
+  <Step title="Add the CustomButton dependency">
+    Add the following line to your dependencies block:
+
+    ```groovy build.gradle
+    implementation 'com.github.searchy2:CustomButton:latest-version'
+    ```
+
+    Replace `latest-version` with the specific version you want to use, such as `2.0` or `1.9`.
+  </Step>
+
+  <Step title="Sync your project">
+    Click "Sync Now" in the banner that appears, or select **File > Sync Project with Gradle Files** from the menu.
+  </Step>
+</Steps>
+
+## Version information
+
+You can find the latest release version on the [GitHub releases page](https://github.com/searchy2/CustomButton/releases).
+
+<Note>
+  While using `latest-version` is convenient, we recommend specifying an exact version number in production to ensure build reproducibility.
+</Note>
+
+## Complete example
+
+Here's what your complete `build.gradle` files should look like:
+
+<CodeGroup>
+
+```groovy Project build.gradle
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+```groovy App build.gradle
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.github.searchy2:CustomButton:2.0'
+    // ... other dependencies
+}
+```
+
+```groovy settings.gradle (Alternative for newer projects)
+dependencyResolutionManagement {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'https://jitpack.io' }
+    }
+}
+```
+
+</CodeGroup>
+
+## Verify installation
+
+After syncing, verify the installation by importing CustomButton in your layout XML:
+
+```xml activity_main.xml
+<stream.custombutton.CustomButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Hello CustomButton" />
+```
+
+If the import resolves without errors, you've successfully installed CustomButton.
+
+## Next steps
+
+Now that you have CustomButton installed, you can:
+
+<CardGroup cols={2}>
+  <Card
+    title="Quickstart guide"
+    icon="rocket"
+    href="/quickstart"
+  >
+    Create your first custom button in under 5 minutes
+  </Card>
+  <Card
+    title="Customization guides"
+    icon="palette"
+    href="/guides/customization"
+  >
+    Learn about all available customization options
+  </Card>
+</CardGroup>

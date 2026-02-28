@@ -1,80 +1,243 @@
 ---
-title: "Quickstart"
-description: "Start building awesome documentation in minutes"
+title: Quickstart
+description: Create your first CustomButton in under 5 minutes
 ---
 
-## Get started in three steps
+This guide will walk you through creating your first CustomButton with a beautiful outline design. By the end, you'll have a working button with custom colors, rounded corners, and state transitions.
 
-Get your documentation site running locally and make your first customization.
+<Note>
+  Make sure you've completed the [installation](/installation) steps before starting this tutorial.
+</Note>
 
-### Step 1: Set up your local environment
+## Create a basic button
 
-<AccordionGroup>
-  <Accordion icon="copy" title="Clone your docs locally">
-    During the onboarding process, you created a GitHub repository with your docs content if you didn't already have one. You can find a link to this repository in your [dashboard](https://dashboard.mintlify.com).
-    
-    To clone the repository locally so that you can make and preview changes to your docs, follow the [Cloning a repository](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) guide in the GitHub docs.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Start the preview server">
-    1. Install the Mintlify CLI: `npm i -g mint`
-    2. Navigate to your docs directory and run: `mint dev`
-    3. Open `http://localhost:3000` to see your docs live!
-    
-    <Tip>Your preview updates automatically as you edit files.</Tip>
-  </Accordion>
-</AccordionGroup>
+<Steps>
+  <Step title="Add CustomButton to your layout">
+    Open your activity or fragment layout XML file and add a CustomButton:
 
-### Step 2: Deploy your changes
+    ```xml activity_main.xml
+    <stream.custombutton.CustomButton
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom Button"
+        android:textSize="18sp"
+        android:singleLine="true"
+        android:ellipsize="none" />
+    ```
 
-<AccordionGroup>
-  <Accordion icon="github" title="Install our GitHub app">
-    Install the Mintlify GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app).
-    
-    Our GitHub app automatically deploys your changes to your docs site, so you don't need to manage deployments yourself.
-</Accordion>
-<Accordion icon="palette" title="Update your site name and colors">
-    For a first change, let's update the name and colors of your docs site.
+    This creates a basic button with default styling.
+  </Step>
 
-    1. Open `docs.json` in your editor.
-    2. Change the `"name"` field to your project name.
-    3. Update the `"colors"` to match your brand.
-    4. Save and see your changes instantly at `http://localhost:3000`.
+  <Step title="Add custom styling">
+    Now let's make it look amazing with rounded corners, an outline, and custom colors:
 
-    <Tip>Try changing the primary color to see an immediate difference!</Tip>
-  </Accordion>
-</AccordionGroup>
+    ```xml activity_main.xml
+    <stream.custombutton.CustomButton
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom Button"
+        android:textSize="18sp"
+        android:singleLine="true"
+        android:ellipsize="none"
+        app:btn_cornerRadius="20dp"
+        app:btn_strokeWidth="1dp"
+        app:btn_strokeColor="#008af9"
+        app:btn_buttonColor="#00FFFFFF"
+        app:btn_buttonSelectColor="#008af9"
+        app:btn_textColor="#008af9"
+        app:btn_textSelectColor="#FFFFFF" />
+    ```
 
-### Step 3: Go live
+    This creates an outlined button that fills with blue when pressed.
+  </Step>
 
-<Accordion icon="rocket" title="Publish your docs">
-  1. Commit and push your changes.
-  2. Your docs will update and be live in moments!
-</Accordion>
+  <Step title="Add padding and margins">
+    For better visual appearance, add padding and margins:
+
+    ```xml activity_main.xml
+    <stream.custombutton.CustomButton
+        android:id="@+id/btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:text="Custom Button"
+        android:textSize="18sp"
+        android:singleLine="true"
+        android:ellipsize="none"
+        app:btn_cornerRadius="20dp"
+        app:btn_strokeWidth="1dp"
+        app:btn_strokeColor="#008af9"
+        app:btn_buttonColor="#00FFFFFF"
+        app:btn_buttonSelectColor="#008af9"
+        app:btn_textColor="#008af9"
+        app:btn_textSelectColor="#FFFFFF" />
+    ```
+  </Step>
+
+  <Step title="Run your app">
+    Build and run your app. You should see a beautiful outlined button that changes color when you tap it!
+  </Step>
+</Steps>
+
+## Understanding the attributes
+
+Here's what each custom attribute does:
+
+| Attribute | Description | Example Value |
+|-----------|-------------|---------------|
+| `btn_cornerRadius` | Rounded corners radius | `20dp` |
+| `btn_strokeWidth` | Outline thickness | `1dp` |
+| `btn_strokeColor` | Default outline color | `#008af9` |
+| `btn_buttonColor` | Default background color | `#00FFFFFF` (transparent) |
+| `btn_buttonSelectColor` | Background color when pressed | `#008af9` |
+| `btn_textColor` | Default text color | `#008af9` |
+| `btn_textSelectColor` | Text color when pressed | `#FFFFFF` |
+
+<Note>
+  All color values support alpha channels. Use `#00FFFFFF` for fully transparent white or `#FFFFFFFF` for fully opaque white.
+</Note>
+
+## Common button styles
+
+Here are some pre-made button styles you can use:
+
+<CodeGroup>
+
+```xml Elegant outline button
+<stream.custombutton.CustomButton
+    android:id="@+id/btn_elegant"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:text="Elegant"
+    android:textSize="18sp"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_strokeColor="@color/white"
+    app:btn_buttonColor="@android:color/transparent"
+    app:btn_textColor="@color/white" />
+```
+
+```xml Confirm button
+<stream.custombutton.CustomButton
+    android:id="@+id/btn_confirm"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:text="Confirm"
+    android:textSize="18sp"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_buttonColor="#4CAF50"
+    app:btn_strokeColor="#4CAF50"
+    app:btn_textColor="@color/white" />
+```
+
+```xml Cancel button
+<stream.custombutton.CustomButton
+    android:id="@+id/btn_cancel"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:text="Cancel"
+    android:textSize="18sp"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_buttonColor="#F44336"
+    app:btn_strokeColor="#F44336"
+    app:btn_textColor="@color/white" />
+```
+
+</CodeGroup>
+
+## Handle button clicks
+
+CustomButton works like any other Android view. Set click listeners in your Activity or Fragment:
+
+<CodeGroup>
+
+```kotlin MainActivity.kt
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        
+        val button = findViewById<CustomButton>(R.id.btn)
+        button.setOnClickListener {
+            // Handle button click
+            Toast.makeText(this, "Button clicked!", Toast.LENGTH_SHORT).show()
+        }
+    }
+}
+```
+
+```java MainActivity.java
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        CustomButton button = findViewById(R.id.btn);
+        button.setOnClickListener(v -> {
+            // Handle button click
+            Toast.makeText(this, "Button clicked!", Toast.LENGTH_SHORT).show();
+        });
+    }
+}
+```
+
+</CodeGroup>
 
 ## Next steps
 
-Now that you have your docs running, explore these key features:
+Congratulations! You've created your first CustomButton. Here's what to explore next:
 
 <CardGroup cols={2}>
-
-<Card title="Write Content" icon="pen-to-square" href="/essentials/markdown">
-  Learn MDX syntax and start writing your documentation.
-</Card>
-
-<Card title="Customize style" icon="palette" href="/essentials/settings">
-  Make your docs match your brand perfectly.
-</Card>
-
-<Card title="Add code examples" icon="square-code" href="/essentials/code">
-  Include syntax-highlighted code blocks.
-</Card>
-
-<Card title="API documentation" icon="code" href="/api-reference/introduction">
-  Auto-generate API docs from OpenAPI specs.
-</Card>
-
+  <Card
+    title="XML attributes"
+    icon="code"
+    href="/api/xml-attributes"
+  >
+    Explore all available XML customization options
+  </Card>
+  <Card
+    title="Programmatic customization"
+    icon="brackets-curly"
+    href="/api/methods"
+  >
+    Learn how to customize buttons in your Java/Kotlin code
+  </Card>
+  <Card
+    title="Adding drawables"
+    icon="image"
+    href="/guides/drawables"
+  >
+    Add icons and images to your buttons
+  </Card>
+  <Card
+    title="Advanced examples"
+    icon="lightbulb"
+    href="/resources/examples"
+  >
+    See more complex button implementations
+  </Card>
 </CardGroup>
-
-<Note>
-  **Need help?** See our [full documentation](https://mintlify.com/docs) or join our [community](https://mintlify.com/community).
-</Note>

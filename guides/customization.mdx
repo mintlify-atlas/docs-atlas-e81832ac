@@ -1,0 +1,197 @@
+---
+title: Customization
+description: Customize button colors, strokes, corners, and text to match your app's design
+---
+
+CustomButton extends `AppCompatTextView`, giving you access to all standard TextView functionality plus additional customization options. You can customize buttons via XML attributes or programmatically.
+
+## XML attributes
+
+Customize your buttons directly in your layout XML using these custom attributes:
+
+<ResponseField name="btn_buttonColor" type="color">
+  Default background color of the button
+</ResponseField>
+
+<ResponseField name="btn_buttonSelectColor" type="color">
+  Background color when the button is pressed or selected
+</ResponseField>
+
+<ResponseField name="btn_strokeColor" type="color">
+  Default outline/border color
+</ResponseField>
+
+<ResponseField name="btn_strokeSelectColor" type="color">
+  Outline color when the button is pressed or selected
+</ResponseField>
+
+<ResponseField name="btn_textColor" type="color">
+  Default text color
+</ResponseField>
+
+<ResponseField name="btn_textSelectColor" type="color">
+  Text color when the button is pressed or selected
+</ResponseField>
+
+<ResponseField name="btn_strokeWidth" type="dimension">
+  Thickness of the outline border in pixels
+</ResponseField>
+
+<ResponseField name="btn_cornerRadius" type="dimension">
+  Radius of rounded corners in pixels
+</ResponseField>
+
+### Example
+
+Here's a complete example showing all customization attributes:
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Custom Button"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_strokeColor="#008af9"
+    app:btn_buttonColor="#00FFFFFF"
+    app:btn_buttonSelectColor="#008af9"
+    app:btn_textColor="#008af9"
+    app:btn_textSelectColor="#FFFFFF"/>
+```
+
+<Tip>
+Use transparent colors (alpha channel `#00`) for `btn_buttonColor` to create outline-only buttons.
+</Tip>
+
+## Programmatic customization
+
+You can also customize buttons programmatically using Java/Kotlin code.
+
+### Set press status
+
+Manually set the button's appearance to selected or default state:
+
+```java
+CustomButton button = findViewById(R.id.btn);
+button.setPressStatus(true);  // Show selected state
+button.setPressStatus(false); // Show default state
+```
+
+<ParamField path="isPress" type="boolean" required>
+  Set to `true` for selected state, `false` for default state
+</ParamField>
+
+### Set all colors at once
+
+Use the `setColor()` method to update all button colors programmatically:
+
+```java
+CustomButton button = findViewById(R.id.btn);
+button.setColor(
+    Color.parseColor("#008af9"),  // text color
+    Color.WHITE,                   // text color when pressed
+    Color.TRANSPARENT,             // background color
+    Color.parseColor("#008af9"),  // background color when pressed
+    Color.parseColor("#008af9"),  // outline color
+    Color.parseColor("#0070cc")   // outline color when pressed
+);
+```
+
+<ParamField path="textnormal" type="int" required>
+  Text color in default state
+</ParamField>
+
+<ParamField path="textselected" type="int" required>
+  Text color when pressed
+</ParamField>
+
+<ParamField path="buttonnormal" type="int" required>
+  Background color in default state
+</ParamField>
+
+<ParamField path="buttonselected" type="int" required>
+  Background color when pressed
+</ParamField>
+
+<ParamField path="strokenormal" type="int" required>
+  Outline color in default state
+</ParamField>
+
+<ParamField path="strokeselected" type="int" required>
+  Outline color when pressed
+</ParamField>
+
+## Color formats
+
+### In XML
+
+Use standard Android color formats:
+
+```xml
+<!-- Hex color -->
+app:btn_buttonColor="#008af9"
+
+<!-- Hex color with alpha -->
+app:btn_buttonColor="#80008af9"
+
+<!-- Color resource -->
+app:btn_buttonColor="@color/primary"
+
+<!-- Transparent -->
+app:btn_buttonColor="@color/transparent"
+app:btn_buttonColor="#00FFFFFF"
+```
+
+### In Java/Kotlin
+
+Use Android's `Color` class:
+
+```java
+// Parse hex string
+int color = Color.parseColor("#008af9");
+
+// Use predefined colors
+int white = Color.WHITE;
+int transparent = Color.TRANSPARENT;
+
+// Create from RGB values
+int color = Color.rgb(0, 138, 249);
+
+// Load from resources
+int color = ContextCompat.getColor(context, R.color.primary);
+```
+
+## Best practices
+
+<AccordionGroup>
+  <Accordion title="Use consistent corner radius">
+    Keep the same `btn_cornerRadius` value across all buttons in your app for visual consistency. Common values are `20dp` for fully rounded buttons or `8dp` for slightly rounded corners.
+  </Accordion>
+
+  <Accordion title="Ensure sufficient contrast">
+    Make sure there's enough contrast between text color and background color for readability, especially in the pressed state.
+  </Accordion>
+
+  <Accordion title="Define pressed states">
+    Always define `btn_buttonSelectColor`, `btn_strokeSelectColor`, and `btn_textSelectColor` to provide clear visual feedback when users interact with your buttons.
+  </Accordion>
+
+  <Accordion title="Use color resources">
+    Define colors in `colors.xml` and reference them with `@color/name` for easier maintenance and theming support.
+  </Accordion>
+</AccordionGroup>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Button styles" icon="swatchbook" href="/guides/button-styles">
+    Explore pre-configured button styles
+  </Card>
+  <Card title="Drawables" icon="image" href="/guides/drawables">
+    Add icons to your buttons
+  </Card>
+</CardGroup>

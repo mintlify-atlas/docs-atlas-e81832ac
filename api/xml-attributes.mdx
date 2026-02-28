@@ -1,0 +1,85 @@
+---
+title: XML attributes
+description: Configure CustomButton appearance and behavior using XML attributes
+---
+
+CustomButton provides XML attributes that allow you to customize the button's appearance directly in your layout files.
+
+## Color attributes
+
+<ParamField path="btn_buttonColor" type="color | reference">
+  The background color of the button in its normal (unpressed) state.
+  
+  **Default:** `Color.WHITE`
+</ParamField>
+
+<ParamField path="btn_buttonSelectColor" type="color | reference">
+  The background color of the button when pressed or selected.
+  
+  **Default:** Same as `btn_buttonColor`
+</ParamField>
+
+<ParamField path="btn_textColor" type="color | reference">
+  The text color in the button's normal (unpressed) state.
+  
+  **Default:** `Color.GRAY`
+</ParamField>
+
+<ParamField path="btn_textSelectColor" type="color | reference">
+  The text color when the button is pressed or selected.
+  
+  **Default:** Same as `btn_textColor`
+</ParamField>
+
+<ParamField path="btn_strokeColor" type="color | reference">
+  The outline/border color in the button's normal (unpressed) state.
+  
+  **Default:** `Color.GRAY`
+</ParamField>
+
+<ParamField path="btn_strokeSelectColor" type="color | reference">
+  The outline/border color when the button is pressed or selected.
+  
+  **Default:** Same as `btn_strokeColor`
+</ParamField>
+
+## Shape attributes
+
+<ParamField path="btn_strokeWidth" type="dimension | reference">
+  The width of the button's outline/border in pixels.
+  
+  **Default:** `2px`
+</ParamField>
+
+<ParamField path="btn_cornerRadius" type="dimension | reference">
+  The corner radius of the button in pixels. Higher values create more rounded corners.
+  
+  **Default:** `40px`
+</ParamField>
+
+## Effect attributes
+
+<ParamField path="btn_blur" type="boolean | reference">
+  Controls whether the button has a blur effect.
+  
+  **Default:** Not specified
+</ParamField>
+
+## Usage example
+
+```xml
+<stream.custombutton.CustomButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Click Me"
+    app:btn_buttonColor="#FF6200EE"
+    app:btn_buttonSelectColor="#FF3700B3"
+    app:btn_textColor="#FFFFFF"
+    app:btn_textSelectColor="#FFCCCCCC"
+    app:btn_strokeColor="#FF3700B3"
+    app:btn_strokeSelectColor="#FF6200EE"
+    app:btn_strokeWidth="4dp"
+    app:btn_cornerRadius="16dp" />
+```
+
+This creates a purple button with white text, rounded corners, and a visible stroke that changes color when pressed.

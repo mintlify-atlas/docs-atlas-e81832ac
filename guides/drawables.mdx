@@ -1,0 +1,195 @@
+---
+title: Drawables
+description: Add left and right drawable icons to your CustomButton
+---
+
+CustomButton supports adding drawable icons on the left or right side of button text. This is useful for adding icons like arrows, checkmarks, or other visual indicators to enhance your button's appearance.
+
+## Adding drawables
+
+Drawables can only be added programmatically using Java/Kotlin code. You cannot add drawables via XML attributes.
+
+<Note>
+Drawables are added using `SpannableString` and `ImageSpan` internally, which provides better control over icon positioning and sizing.
+</Note>
+
+## Left drawable
+
+### Basic usage
+
+Add a drawable to the left of the button text using default dimensions:
+
+```java
+CustomButton button = findViewById(R.id.btn);
+button.setDrawableLeft(R.drawable.ic_check);
+```
+
+The drawable will automatically size to match the button's line height.
+
+<ParamField path="imgResId" type="int" required>
+  The drawable resource ID (e.g., `R.drawable.ic_check`)
+</ParamField>
+
+### Custom dimensions
+
+Add a drawable with custom width and height:
+
+```java
+CustomButton button = findViewById(R.id.btn);
+int width = 48;  // pixels
+int height = 48; // pixels
+button.setDrawableLeft(R.drawable.ic_check, width, height);
+```
+
+<ParamField path="imgResId" type="int" required>
+  The drawable resource ID
+</ParamField>
+
+<ParamField path="width" type="int" required>
+  Drawable width in pixels
+</ParamField>
+
+<ParamField path="height" type="int" required>
+  Drawable height in pixels
+</ParamField>
+
+<Tip>
+Convert dp to pixels for consistent sizing across different screen densities:
+
+```java
+int dpValue = 24;
+float scale = getResources().getDisplayMetrics().density;
+int pixels = (int) (dpValue * scale + 0.5f);
+button.setDrawableLeft(R.drawable.ic_check, pixels, pixels);
+```
+</Tip>
+
+## Right drawable
+
+### Basic usage
+
+Add a drawable to the right of the button text using default dimensions:
+
+```java
+CustomButton button = findViewById(R.id.btn);
+button.setDrawableRight(R.drawable.ic_arrow_forward);
+```
+
+<ParamField path="imgResId" type="int" required>
+  The drawable resource ID (e.g., `R.drawable.ic_arrow_forward`)
+</ParamField>
+
+### Custom dimensions
+
+Add a drawable with custom width and height:
+
+```java
+CustomButton button = findViewById(R.id.btn);
+int width = 48;  // pixels
+int height = 48; // pixels
+button.setDrawableRight(R.drawable.ic_arrow_forward, width, height);
+```
+
+<ParamField path="imgResId" type="int" required>
+  The drawable resource ID
+</ParamField>
+
+<ParamField path="width" type="int" required>
+  Drawable width in pixels
+</ParamField>
+
+<ParamField path="height" type="int" required>
+  Drawable height in pixels
+</ParamField>
+
+## Complete example
+
+Here's a complete example showing how to create a button with customization and a left drawable:
+
+```java
+package com.example.app;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+import stream.custombutton.CustomButton;
+
+public class MainActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        CustomButton button = findViewById(R.id.btn);
+        
+        // Set colors
+        button.setColor(
+            Color.parseColor("#008af9"),  // text color
+            Color.WHITE,                   // text color when pressed
+            Color.TRANSPARENT,             // background color
+            Color.parseColor("#008af9"),  // background color when pressed
+            Color.parseColor("#008af9"),  // outline color
+            Color.parseColor("#0070cc")   // outline color when pressed
+        );
+        
+        // Add left drawable with custom size
+        int iconSize = (int) (24 * getResources().getDisplayMetrics().density);
+        button.setDrawableLeft(R.drawable.ic_check, iconSize, iconSize);
+        
+        // Set click listener
+        button.setOnClickListener(v -> {
+            // Handle click
+        });
+    }
+}
+```
+
+## Best practices
+
+<AccordionGroup>
+  <Accordion title="Use vector drawables">
+    Prefer vector drawables (XML vectors) over PNG images for better scalability across different screen densities. Vector drawables are supported through `AppCompatDelegate.setCompatVectorFromResourcesEnabled(true)` in CustomButton.
+  </Accordion>
+
+  <Accordion title="Size drawables appropriately">
+    For best results, use icon sizes between 18dp and 24dp. Convert to pixels based on screen density to ensure consistent sizing.
+  </Accordion>
+
+  <Accordion title="Consider text length">
+    Be mindful of button text length when adding drawables. Long text with large drawables may cause layout issues or text truncation.
+  </Accordion>
+
+  <Accordion title="Match icon style">
+    Ensure your drawable icons match your button style (filled vs outlined) and overall app design language.
+  </Accordion>
+
+  <Accordion title="Test both orientations">
+    Test buttons with drawables in both portrait and landscape orientations to ensure they display correctly in all scenarios.
+  </Accordion>
+</AccordionGroup>
+
+## Drawable alignment
+
+Drawables are aligned to the bottom of the text using `ImageSpan.ALIGN_BOTTOM`. This ensures consistent vertical alignment with the button text.
+
+<Note>
+The library uses `SpannableString` internally to add drawables. Calling `setDrawableLeft()` or `setDrawableRight()` modifies the button's text content by inserting the drawable as a span.
+</Note>
+
+## Limitations
+
+- You cannot add both left and right drawables to the same button simultaneously
+- Calling `setDrawableLeft()` after `setDrawableRight()` will replace the right drawable with a left one
+- Drawables cannot be added via XML attributes
+- The library does not support top or bottom drawables
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Button styles" icon="swatchbook" href="/guides/button-styles">
+    Explore pre-configured button styles
+  </Card>
+  <Card title="Customization" icon="palette" href="/guides/customization">
+    Learn how to customize colors and appearance
+  </Card>
+</CardGroup>

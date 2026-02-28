@@ -1,0 +1,235 @@
+---
+title: FAQ
+description: Frequently asked questions about CustomButton
+---
+
+Find answers to common questions about using CustomButton in your Android projects.
+
+## General questions
+
+<Accordion title="What is the minimum Android API level supported?">
+  CustomButton requires **API 15+** (Android 4.0.3 Ice Cream Sandwich and above). This covers over 99% of active Android devices, making it suitable for virtually all modern Android applications.
+</Accordion>
+
+<Accordion title="Is CustomButton compatible with Material Design?">
+  Yes, CustomButton is fully compatible with Material Design and can coexist with Material Components. In fact, CustomButton was created as an alternative to Material buttons, offering a flatter design with better drawable support and more consistent appearance across Android versions.
+
+  CustomButton extends `AppCompatTextView`, ensuring compatibility with AppCompat and Material Design libraries.
+</Accordion>
+
+<Accordion title="What makes CustomButton different from standard Android buttons?">
+  CustomButton offers several advantages over standard Android buttons:
+
+  - **Consistent appearance** across all Android versions
+  - **Better drawable support** with easy-to-use methods for adding icons
+  - **Flat design** that works well with modern UI trends
+  - **Extensive customization** via XML attributes and programmatic methods
+  - **Outline support** with separate colors for stroke and fill
+  - **Press state handling** with distinct selected/unselected colors for all elements
+</Accordion>
+
+<Accordion title="Can I use CustomButton with ViewBinding or DataBinding?">
+  Yes! CustomButton works seamlessly with both ViewBinding and DataBinding since it's a standard Android view component. Simply reference it in your binding class like any other view.
+
+  ```java
+  // ViewBinding example
+  CustomButton myButton = binding.btn1;
+  myButton.setOnClickListener(v -> { /* handle click */ });
+  ```
+</Accordion>
+
+## Customization
+
+<Accordion title="What are the customization limits?">
+  CustomButton provides extensive customization options:
+
+  **Via XML attributes:**
+  - Background colors (default and selected states)
+  - Stroke colors and width (default and selected states)
+  - Text colors (default and selected states)
+  - Corner radius for rounded buttons
+
+  **Programmatically:**
+  - All color states simultaneously with `setColor()`
+  - Left and right drawables with `setDrawableLeft()` and `setDrawableRight()`
+  - Custom drawable sizes
+  - Press state with `setPressStatus()`
+
+  Since CustomButton extends `AppCompatTextView`, you also have access to all standard TextView properties like text size, font, padding, gravity, and more.
+</Accordion>
+
+<Accordion title="Can I add icons or drawables to buttons?">
+  Yes! CustomButton provides convenient methods for adding icons:
+
+  ```java
+  // Add icon to the left
+  button.setDrawableLeft(R.drawable.icon_heart);
+
+  // Add icon to the right
+  button.setDrawableRight(R.drawable.icon_arrow);
+
+  // Add icon with custom size
+  int iconSize = (int) Units.spToPx(context, 22);
+  button.setDrawableLeft(R.drawable.icon, iconSize, iconSize);
+  ```
+
+  Icons automatically adapt to the button's press state when using selector drawables.
+</Accordion>
+
+<Accordion title="Does CustomButton support elevation or shadows?">
+  Currently, CustomButton **does not support elevation or drop shadows**. This is a known limitation and is listed in the Features Wishlist.
+
+  However, you can achieve shadow effects by:
+  - Wrapping CustomButton in a CardView with elevation
+  - Using a custom drawable background with shadow
+  - Applying a shadow layer in your design tool and using it as a background
+
+  Contributions to add native shadow support are welcome!
+</Accordion>
+
+<Accordion title="Can I use gradient backgrounds?">
+  Gradient backgrounds are not natively supported by CustomButton at this time. This feature is included in the Features Wishlist.
+
+  As a workaround, you can:
+  - Set a gradient drawable as the background using standard Android background attributes
+  - Note that this may conflict with CustomButton's color management
+
+  Native gradient support contributions are encouraged!
+</Accordion>
+
+<Accordion title="How do I create a button with rounded corners?">
+  Use the `btn_cornerRadius` attribute to create rounded corners:
+
+  ```xml
+  <stream.custombutton.CustomButton
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Rounded Button"
+      app:btn_cornerRadius="20dp"
+      app:btn_buttonColor="#008af9"/>
+  ```
+
+  The corner radius applies to both the button background and stroke outline.
+</Accordion>
+
+## Performance
+
+<Accordion title="What is the performance impact of using CustomButton?">
+  CustomButton has **minimal performance impact** since it extends `AppCompatTextView` and uses native Android drawing APIs. The custom attributes are processed during view inflation and drawing is handled efficiently by the Android framework.
+
+  There is no noticeable difference in performance compared to standard Android buttons. You can safely use CustomButton throughout your application, even in RecyclerView lists.
+</Accordion>
+
+<Accordion title="Can I use CustomButton in RecyclerView lists?">
+  Yes! CustomButton works perfectly in RecyclerView, ListView, or any other list component. Since it's lightweight and extends `AppCompatTextView`, it performs well even with many instances on screen.
+
+  ```java
+  // In your ViewHolder
+  CustomButton actionButton = itemView.findViewById(R.id.action_button);
+  actionButton.setText(item.getActionText());
+  actionButton.setOnClickListener(v -> handleAction(item));
+  ```
+</Accordion>
+
+## Migration
+
+<Accordion title="How do I migrate from standard Android buttons?">
+  Migration is straightforward:
+
+  1. **Replace the XML tag:**
+     ```xml
+     <!-- Before -->
+     <Button
+         android:id="@+id/my_button"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Click Me"/>
+
+     <!-- After -->
+     <stream.custombutton.CustomButton
+         android:id="@+id/my_button"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="Click Me"/>
+     ```
+
+  2. **Add custom attributes** (optional):
+     ```xml
+     app:btn_cornerRadius="20dp"
+     app:btn_strokeWidth="1dp"
+     app:btn_strokeColor="#008af9"
+     ```
+
+  3. **Update Java/Kotlin code** (if needed):
+     ```java
+     // Change the import and type
+     CustomButton myButton = findViewById(R.id.my_button);
+     ```
+
+  All standard button functionality (click listeners, text, etc.) works the same way.
+</Accordion>
+
+<Accordion title="Is CustomButton compatible with my existing click listeners?">
+  Yes! CustomButton supports all standard Android click listeners:
+
+  ```java
+  // OnClickListener
+  button.setOnClickListener(v -> { /* handle click */ });
+
+  // OnLongClickListener
+  button.setOnLongClickListener(v -> {
+      // handle long click
+      return true;
+  });
+
+  // OnTouchListener
+  button.setOnTouchListener((v, event) -> {
+      // handle touch
+      return false;
+  });
+  ```
+
+  No changes are needed to your existing listener code.
+</Accordion>
+
+## Troubleshooting
+
+<Accordion title="Why aren't my custom attributes working?">
+  If custom attributes like `btn_cornerRadius` or `btn_strokeWidth` aren't working, check:
+
+  1. **Namespace declaration**: Ensure you have the app namespace declared in your layout root:
+     ```xml
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     ```
+
+  2. **Attribute prefix**: Use `app:` prefix, not `android:`:
+     ```xml
+     app:btn_cornerRadius="20dp"  <!-- Correct -->
+     android:btn_cornerRadius="20dp"  <!-- Wrong -->
+     ```
+
+  3. **Library dependency**: Verify CustomButton is properly added to your `build.gradle`:
+     ```gradle
+     implementation 'com.github.searchy2:CustomButton:latest-version'
+     ```
+</Accordion>
+
+<Accordion title="Why does my button look different on different Android versions?">
+  CustomButton is designed to look **consistent across all Android versions** (API 15+). If you're seeing differences:
+
+  - Ensure you're setting all color states (normal and selected) explicitly
+  - Check that you're not mixing CustomButton attributes with standard button styling
+  - Verify that custom themes aren't overriding CustomButton properties
+
+  CustomButton's flat design avoids the inconsistencies common with Material buttons across Android versions.
+</Accordion>
+
+<Accordion title="How do I report bugs or request features?">
+  To report bugs or request features:
+
+  1. **File an issue** on the [GitHub repository](https://github.com/searchy2/CustomButton/issues)
+  2. **Submit a pull request** if you've implemented a feature or fix
+  3. **Check the Features Wishlist** in the README for planned enhancements
+
+  Contributions are welcome! Popular requested features include elevation shadows and gradient backgrounds.
+</Accordion>

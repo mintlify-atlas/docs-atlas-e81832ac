@@ -1,0 +1,251 @@
+---
+title: Examples
+description: Real-world usage examples and button patterns from the CustomButton sample app
+---
+
+Explore various CustomButton implementations from the sample app, showcasing different styles and use cases for creating beautiful, minimalistic buttons.
+
+## Basic button patterns
+
+<CardGroup cols={2}>
+  <Card title="Default button" icon="circle">
+    The simplest CustomButton with no custom styling - inherits default Android button appearance.
+  </Card>
+  <Card title="Elegant outline" icon="sparkles">
+    Transparent background with white outline - perfect for dark backgrounds.
+  </Card>
+  <Card title="Normal outline" icon="square-dashed">
+    Outline button with fill effect on press - the most common pattern.
+  </Card>
+  <Card title="Action buttons" icon="check">
+    Colored backgrounds for confirm/cancel actions with consistent styling.
+  </Card>
+</CardGroup>
+
+## Default button
+
+A basic CustomButton without any custom attributes, using default Android styling.
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="Default"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"/>
+```
+
+## Elegant outline button
+
+Transparent button with white outline - ideal for colored or image backgrounds.
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="Elegant"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_strokeColor="@color/white"
+    app:btn_strokeSelectColor="@color/white_pressed"
+    app:btn_buttonColor="@color/transparent"
+    app:btn_textColor="@color/white"
+    app:btn_textSelectColor="@color/white_pressed"/>
+```
+
+## Normal outline button
+
+Outline button that fills with color when pressed - the most versatile pattern.
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="Normal"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_strokeColor="#008af9"
+    app:btn_buttonColor="@color/transparent"
+    app:btn_buttonSelectColor="#008af9"
+    app:btn_textColor="#008af9"
+    app:btn_textSelectColor="@color/white"/>
+```
+
+## Confirm button
+
+Green button for positive actions like save, submit, or confirm.
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="2dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="Confirm"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_buttonColor="@color/green"
+    app:btn_buttonSelectColor="@color/green_light"
+    app:btn_strokeColor="@color/green"
+    app:btn_strokeSelectColor="@color/green_light"
+    app:btn_textColor="@color/white"/>
+```
+
+## Cancel button
+
+Red button for destructive or cancel actions.
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="2dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="Cancel"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_buttonColor="@color/red"
+    app:btn_buttonSelectColor="@color/red_light"
+    app:btn_strokeColor="@color/red"
+    app:btn_strokeSelectColor="@color/red_light"
+    app:btn_textColor="@color/white"/>
+```
+
+## Buttons with icons
+
+Add icons to your buttons programmatically for enhanced visual communication.
+
+### Right icon (Confirm)
+
+```java
+CustomButton btn4 = findViewById(R.id.btn4);
+btn4.setDrawableRight(R.drawable.icon_check_selector);
+btn4.setOnClickListener(onClickListener);
+```
+
+### Left icon with custom size (Cancel)
+
+```java
+int iconSize = (int) Units.spToPx(mContext, 22);
+CustomButton btn5 = findViewById(R.id.btn5);
+btn5.setDrawableLeft(R.drawable.icon_close_selector, iconSize, iconSize);
+btn5.setOnClickListener(onClickListener);
+```
+
+## Layout integration
+
+CustomButtons work seamlessly within any Android layout. Here's how they're used in the sample app.
+
+### Centered in LinearLayout
+
+```xml
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <stream.custombutton.CustomButton
+        android:id="@+id/btn1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Centered Button"
+        android:textSize="18sp"/>
+</LinearLayout>
+```
+
+### Elegant button on colored background
+
+```xml
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorPrimaryLight">
+
+    <stream.custombutton.CustomButton
+        android:id="@+id/btn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="Elegant"
+        android:textSize="18sp"
+        app:btn_cornerRadius="20dp"
+        app:btn_strokeWidth="1dp"
+        app:btn_strokeColor="@color/white"
+        app:btn_buttonColor="@color/transparent"
+        app:btn_textColor="@color/white"/>
+</FrameLayout>
+```
+
+## Setting click listeners
+
+CustomButton supports standard Android click listeners since it extends `AppCompatTextView`.
+
+```java
+View.OnClickListener onClickListener = new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Log.d("Button", "Clicked");
+    }
+};
+
+CustomButton btn1 = findViewById(R.id.btn1);
+btn1.setOnClickListener(onClickListener);
+
+CustomButton btn2 = findViewById(R.id.btn2);
+btn2.setOnClickListener(onClickListener);
+```

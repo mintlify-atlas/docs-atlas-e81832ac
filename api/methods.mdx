@@ -1,0 +1,164 @@
+---
+title: Methods
+description: Public methods for controlling CustomButton programmatically
+---
+
+CustomButton provides several public methods to control its appearance and behavior at runtime.
+
+## setPressStatus
+
+Set the button's appearance to selected or unselected state programmatically.
+
+```java
+public void setPressStatus(boolean isPress)
+```
+
+<ParamField path="isPress" type="boolean" required>
+  `true` to show the selected/pressed state, `false` to show the normal state
+</ParamField>
+
+**Example:**
+
+```java
+CustomButton button = findViewById(R.id.my_button);
+button.setPressStatus(true); // Show selected state
+```
+
+## setDrawableLeft
+
+Add a drawable icon to the left side of the button text.
+
+### Basic usage
+
+```java
+public void setDrawableLeft(int imgResId)
+```
+
+<ParamField path="imgResId" type="int" required>
+  The drawable resource ID
+</ParamField>
+
+The drawable will be sized to match the line height of the text.
+
+### Advanced usage
+
+```java
+public void setDrawableLeft(int imgResId, int width, int height)
+```
+
+<ParamField path="imgResId" type="int" required>
+  The drawable resource ID
+</ParamField>
+
+<ParamField path="width" type="int" required>
+  The drawable width in pixels
+</ParamField>
+
+<ParamField path="height" type="int" required>
+  The drawable height in pixels
+</ParamField>
+
+**Example:**
+
+```java
+CustomButton button = findViewById(R.id.my_button);
+button.setDrawableLeft(R.drawable.ic_star); // Auto-sized
+button.setDrawableLeft(R.drawable.ic_star, 48, 48); // Custom size
+```
+
+## setDrawableRight
+
+Add a drawable icon to the right side of the button text.
+
+### Basic usage
+
+```java
+public void setDrawableRight(int imgResId)
+```
+
+<ParamField path="imgResId" type="int" required>
+  The drawable resource ID
+</ParamField>
+
+The drawable will be sized to match the line height of the text.
+
+### Advanced usage
+
+```java
+public void setDrawableRight(int imgResId, int width, int height)
+```
+
+<ParamField path="imgResId" type="int" required>
+  The drawable resource ID
+</ParamField>
+
+<ParamField path="width" type="int" required>
+  The drawable width in pixels
+</ParamField>
+
+<ParamField path="height" type="int" required>
+  The drawable height in pixels
+</ParamField>
+
+**Example:**
+
+```java
+CustomButton button = findViewById(R.id.my_button);
+button.setDrawableRight(R.drawable.ic_arrow); // Auto-sized
+button.setDrawableRight(R.drawable.ic_arrow, 32, 32); // Custom size
+```
+
+## setColor
+
+Set all color properties of the button at once.
+
+```java
+public void setColor(
+    int textnormal,
+    int textselected,
+    int buttonnormal,
+    int buttonselected,
+    int strokenormal,
+    int strokeselected
+)
+```
+
+<ParamField path="textnormal" type="int" required>
+  Text color in normal state
+</ParamField>
+
+<ParamField path="textselected" type="int" required>
+  Text color when pressed
+</ParamField>
+
+<ParamField path="buttonnormal" type="int" required>
+  Background color in normal state
+</ParamField>
+
+<ParamField path="buttonselected" type="int" required>
+  Background color when pressed
+</ParamField>
+
+<ParamField path="strokenormal" type="int" required>
+  Outline color in normal state
+</ParamField>
+
+<ParamField path="strokeselected" type="int" required>
+  Outline color when pressed
+</ParamField>
+
+**Example:**
+
+```java
+CustomButton button = findViewById(R.id.my_button);
+button.setColor(
+    Color.WHITE,           // text normal
+    Color.LTGRAY,          // text selected
+    Color.parseColor("#FF6200EE"), // button normal
+    Color.parseColor("#FF3700B3"), // button selected
+    Color.parseColor("#FF3700B3"), // stroke normal
+    Color.parseColor("#FF6200EE")  // stroke selected
+);
+```
+
+This method provides a convenient way to theme the button programmatically without setting each color attribute individually.

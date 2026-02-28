@@ -1,0 +1,182 @@
+---
+title: Button styles
+description: Learn about the 5 pre-configured button styles available in CustomButton
+---
+
+CustomButton comes with 5 beautiful pre-configured button styles that you can use in your Android application. Each style demonstrates different visual treatments for various use cases.
+
+## Default style
+
+The default style provides a clean, minimal button without any custom styling. This is the base appearance when no custom attributes are applied.
+
+![Default Button](/screenshots/button_default.png)
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn1"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="Default"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"/>
+```
+
+## Elegant style
+
+The elegant style features a transparent background with a white outline, perfect for overlay situations or dark backgrounds.
+
+![Elegant Button](/screenshots/button_elegant.png)
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn2"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="Elegant"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_strokeColor="@color/white"
+    app:btn_strokeSelectColor="@color/white_pressed"
+    app:btn_buttonColor="@color/transparent"
+    app:btn_textColor="@color/white"
+    app:btn_textSelectColor="@color/white_pressed"/>
+```
+
+<Note>
+The elegant style uses a transparent background, making it ideal for buttons placed over images or colored backgrounds.
+</Note>
+
+## Normal style
+
+The normal style features a blue outline with a transparent background that fills with blue when pressed.
+
+![Normal Button](/screenshots/button_normal.png)
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn3"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="Normal"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_strokeColor="#008af9"
+    app:btn_buttonColor="@color/transparent"
+    app:btn_buttonSelectColor="#008af9"
+    app:btn_textColor="#008af9"
+    app:btn_textSelectColor="@color/white"/>
+```
+
+<Tip>
+Use `btn_buttonSelectColor` to define the background color when the button is pressed, creating an interactive visual feedback.
+</Tip>
+
+## Confirm style
+
+The confirm style uses a solid green background, ideal for positive actions like "Save", "Submit", or "Confirm".
+
+![Confirm Button](/screenshots/button_confirm.png)
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn4"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="2dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="Confirm"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_buttonColor="@color/green"
+    app:btn_buttonSelectColor="@color/green_light"
+    app:btn_strokeColor="@color/green"
+    app:btn_strokeSelectColor="@color/green_light"
+    app:btn_textColor="@color/white"/>
+```
+
+## Cancel style
+
+The cancel style uses a solid red background, ideal for destructive or negative actions like "Delete", "Cancel", or "Remove".
+
+![Cancel Button](/screenshots/button_cancel.png)
+
+```xml
+<stream.custombutton.CustomButton
+    android:id="@+id/btn5"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="2dp"
+    android:paddingBottom="6dp"
+    android:paddingLeft="12dp"
+    android:paddingRight="12dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    android:layout_gravity="center_horizontal"
+    android:gravity="center"
+    android:text="Cancel"
+    android:textSize="18sp"
+    android:singleLine="true"
+    android:ellipsize="none"
+    app:btn_cornerRadius="20dp"
+    app:btn_strokeWidth="1dp"
+    app:btn_buttonColor="@color/red"
+    app:btn_buttonSelectColor="@color/red_light"
+    app:btn_strokeColor="@color/red"
+    app:btn_strokeSelectColor="@color/red_light"
+    app:btn_textColor="@color/white"/>
+```
+
+<Note>
+Both confirm and cancel styles use lighter colors for their pressed states (`btn_buttonSelectColor`) to provide clear visual feedback.
+</Note>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Customization" icon="palette" href="/guides/customization">
+    Learn how to customize colors, strokes, and corners
+  </Card>
+  <Card title="Drawables" icon="image" href="/guides/drawables">
+    Add icons to your buttons
+  </Card>
+</CardGroup>
